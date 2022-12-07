@@ -6,11 +6,35 @@ import {
   Input,
   Stack,
   Text,
+  useToast,
   VStack,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+import { postLogin } from "../api";
 
 export default function SignIn() {
+  const navigate = useNavigate()
+  const queryClient = useQueryClient()
+  const toast = useToast()
+
+  const mutation = useMutation(postLogin,{
+    onSuccess: () => {
+      toast({
+        title:"로그인 성공",
+        status: "success"
+      })
+      queryClient.resetQueries(["me"])
+      navigate("/")
+
+    }
+  })
+  const {register, handleSubmit, formState:{errors}} = useForm()
+  const onValid = ({username,password}) => {
+    mutation.mutate({username,password})
+  }
+
   return (
     <Stack
       bgImage={
@@ -35,7 +59,7 @@ export default function SignIn() {
         <Heading size={"lg"} fontWeight={"semibold"} alignSelf="flex-start">
           로그인
         </Heading>
-        <Stack as="form" spacing={10} w="100%">
+        <Stack as="form" spacing={10} w="100%" onSubmit={handleSubmit(onValid)}>
           <FormControl>
             <FormLabel mb={0} fontSize={"sm"} color="gray.600">
               ID
@@ -49,7 +73,9 @@ export default function SignIn() {
               focusBorderColor="#797979"
               height={9}
               fontWeight="bold"
+              {...register("username",{required: {message: "이 값은 필수 값 입니다."}})}
             />
+            {errors.username ? <Text>{errors.username.message}</Text>:null}
           </FormControl>
           <FormControl>
             <FormLabel mb={0} fontSize={"sm"} color="gray.600">
@@ -65,6 +91,7 @@ export default function SignIn() {
               borderColor={"#797979"}
               height={9}
               fontWeight="bold"
+              {...register("password")}
             />
           </FormControl>
           <Button
