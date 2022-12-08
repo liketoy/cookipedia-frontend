@@ -17,6 +17,12 @@ import FormError from "../components/FormError";
 import ProtectedPage from "../components/ProtectedPage";
 
 export default function SignIn() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setError,
+  } = useForm();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const toast = useToast();
@@ -31,12 +37,10 @@ export default function SignIn() {
       queryClient.resetQueries(["me"]);
       navigate("/");
     },
+    onError: ({ response }) => {
+      setError("password", { message: response.data.error });
+    },
   });
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
   const onValid = ({ username, password }) => {
     mutation.mutate({ username, password });
   };
