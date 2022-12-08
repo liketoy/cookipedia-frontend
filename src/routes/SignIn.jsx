@@ -13,6 +13,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { postLogin } from "../api";
+import FormError from "../components/FormError";
 import ProtectedPage from "../components/ProtectedPage";
 
 export default function SignIn() {
@@ -85,10 +86,12 @@ export default function SignIn() {
                 height={9}
                 fontWeight="bold"
                 {...register("username", {
-                  required: { message: "이 값은 필수 값 입니다." },
+                  required: "이 값은 필수 값 입니다.",
                 })}
               />
-              {errors.username ? <Text>{errors.username.message}</Text> : null}
+              {errors.username ? (
+                <FormError errorMessage={errors.username.message} />
+              ) : null}
             </FormControl>
             <FormControl>
               <FormLabel mb={0} fontSize={"sm"} color="gray.600">
@@ -104,8 +107,13 @@ export default function SignIn() {
                 borderColor={"#797979"}
                 height={9}
                 fontWeight="bold"
-                {...register("password")}
+                {...register("password", {
+                  required: "이 값은 필수 값 입니다.",
+                })}
               />
+              {errors.password ? (
+                <FormError errorMessage={errors.password.message} />
+              ) : null}
             </FormControl>
             <Button
               type="submit"
