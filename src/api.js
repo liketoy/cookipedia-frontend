@@ -9,12 +9,14 @@ export const getMe = () =>
   instance.get("users/me").then((response) => response.data);
 
 export const postLogin = ({ username, password }) =>
-  instance.post(
-    "users/login",
-    { username, password },
-    {
-      headers: {
-        "X-CSRFToken": Cookie.get("csrftoken") || "",
-      },
-    }
-  );
+  instance
+    .post(
+      "users/login",
+      { username, password },
+      {
+        headers: {
+          "X-CSRFToken": Cookie.get("csrftoken") || "",
+        },
+      }
+    )
+    .then((reponse) => reponse.data);
