@@ -20,3 +20,15 @@ export const postLogin = ({ username, password }) =>
       }
     )
     .then((reponse) => reponse.data);
+
+export const postSignUp = ({ name, username, password }) => {
+  instance.post(
+    "users/",
+    { name, username, password },
+    {
+      headers: {
+        "X-CSRFToken": Cookie.get("csrftoken") || "",
+      },
+    }
+  );
+};
