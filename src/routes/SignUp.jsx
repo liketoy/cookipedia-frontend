@@ -22,6 +22,7 @@ import { postSignUp } from "../api";
 import AddressPopUp from "../components/AddressPopUp";
 import { useState } from "react";
 import { PhoneIcon } from '@chakra-ui/icons'
+import ProtectedPage from "../components/ProtectedPage";
 
 const InputItem = ({ inputProps }) => {
   const {
@@ -153,6 +154,7 @@ export default function SignUp() {
   };
 
   return (
+  <ProtectedPage logOutOnly>
     <Stack
       bgImage={
         "linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7) ),url('./bg.jpg')"
@@ -313,5 +315,6 @@ export default function SignUp() {
         </Stack>
       </VStack>
     </Stack>
+  </ProtectedPage>
   );
 }
