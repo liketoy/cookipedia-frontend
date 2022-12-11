@@ -5,6 +5,8 @@ const instance = axios.create({
   baseURL: "http://127.0.0.1:8000/api/",
   withCredentials: true,
 });
+
+
 export const getMe = () =>
   instance.get("users/me").then((response) => response.data);
 
@@ -15,20 +17,20 @@ export const postLogin = ({ username, password }) =>
       { username, password },
       {
         headers: {
-          "X-CSRFToken": Cookie.get("csrftoken") || "",
+          "X-CSRFToken": Cookie.get("csrftoken") || ""
         },
       }
     )
     .then((reponse) => reponse.data);
 
-export const postSignUp = ({ name, username, password }) => {
+export const postSignUp = ({ name, username, password, gender, avatar, birth_date, address, phone_number, email, nickname }) => {
   instance.post(
     "users/",
-    { name, username, password },
+    { name, username, nickname, password, gender, avatar, birth_date, address, phone_number, email },
     {
       headers: {
-        "X-CSRFToken": Cookie.get("csrftoken") || "",
+        "content-type": "multipart/form-data"
       },
     }
-  );
+  ).then((response) => response.data).catch(error => {throw new Error(error)});
 };
