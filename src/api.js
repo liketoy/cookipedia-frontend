@@ -10,6 +10,8 @@ const instance = axios.create({
 export const getMe = () =>
   instance.get("users/me").then((response) => response.data);
 
+export const getMyPantry = () => instance.get("pantries/me").then((response)=> response.data);
+
 export const postLogin = ({ username, password }) =>
   instance
     .post(
@@ -32,5 +34,5 @@ export const postSignUp = ({ name, username, password, gender, avatar, birth_dat
         "content-type": "multipart/form-data"
       },
     }
-  ).then((response) => response.data).catch(error => {throw new Error(error)});
+  ).then((response) => response.data).catch(error => { throw new Error(error) });
 };

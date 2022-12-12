@@ -128,7 +128,6 @@ export default function SignUp() {
         { message: "비밀번호가 다릅니다." },
         { shouldFocus: true, type: "focus" }
       );
-      
     }
     if (nickname.length < 3){
       resetField("nickname");
@@ -137,7 +136,6 @@ export default function SignUp() {
         { message: "닉네임은 최소 3글자입니다."},
         { shouldFocus: true, type: "focus"}
       );
-      
     }
 
     if (nickname.length < 3 || password !== password1){
