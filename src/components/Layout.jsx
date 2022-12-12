@@ -28,6 +28,8 @@ export default function Layout({ title, canGoBack, hasTabBar, children }) {
         px={10}
         h={20}
         textColor={"black"}
+        backgroundColor={"white"}
+        zIndex={"9999"}
       >
         {title ? (
           <Heading
@@ -66,6 +68,8 @@ export default function Layout({ title, canGoBack, hasTabBar, children }) {
           px={10}
           pb={5}
           pt={3}
+          backgroundColor={"white"}
+          zIndex={"9999"}
         >
           <Link to={{ pathname: "/" }}>
             <IconButton

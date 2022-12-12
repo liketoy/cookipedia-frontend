@@ -32,7 +32,7 @@ export default function SignIn() {
       toast({
         title: "로그인 성공",
         status: "success",
-        position: "top-right",
+        position: "bottom",
       });
       queryClient.resetQueries(["me"]);
       navigate("/");
