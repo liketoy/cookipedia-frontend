@@ -21,7 +21,6 @@ export default function SignIn() {
     register,
     handleSubmit,
     formState: { errors },
-    setError,
   } = useForm();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -37,14 +36,10 @@ export default function SignIn() {
       queryClient.resetQueries(["me"]);
       navigate("/");
     },
-    onError: ({ response }) => {
-      setError("password", { message: response.data.error });
-    },
   });
   const onValid = ({ username, password }) => {
     mutation.mutate({ username, password });
   };
-
   return (
     <ProtectedPage logOutOnly>
       <Stack
@@ -119,6 +114,9 @@ export default function SignIn() {
                 <FormError errorMessage={errors.password.message} />
               ) : null}
             </FormControl>
+            {mutation.isError ? (
+              <FormError errorMessage={mutation.error?.response?.data?.error} />
+            ) : null}
             <Button
               type="submit"
               colorScheme={"orange"}
