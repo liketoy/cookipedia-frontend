@@ -3,6 +3,7 @@ import Enter from "./routes/Enter";
 import Home from "./routes/Home";
 import SignIn from "./routes/SignIn";
 import UserPage from "./routes/UserPage";
+import UserPageModify from "./routes/UserPageModify";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
     path: "/user",
     element: <UserPage />
   },
+  {
+    path:"/user/modify",
+    element: <UserPageModify />
+  }
 ]);
 
 export default router;

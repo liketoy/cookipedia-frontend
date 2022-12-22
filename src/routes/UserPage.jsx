@@ -27,7 +27,6 @@ export default function UserPage() {
 
   const foodCategory = ["한식","양식","일식","중식","분식","베이킹","기타"]
   const myrecipes = recipes ? recipes.filter((recipe,index)=>(recipe.writer.nickname === user.nickname)) : []
-  console.log(document.cookie)
 
   const mutation = useMutation(postLogout, {
     onSuccess: () => {
@@ -59,7 +58,7 @@ export default function UserPage() {
             <Portal>
               <PopoverContent>
                 <PopoverArrow />
-                <PopoverHeader><Link>개인정보 수정</Link></PopoverHeader>
+                <PopoverHeader><Link to={{pathname: "/user/modify"}} >개인정보 수정</Link></PopoverHeader>
                 <PopoverCloseButton />
                 <PopoverFooter><Link>비밀번호 수정</Link></PopoverFooter>
               </PopoverContent>

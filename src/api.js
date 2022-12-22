@@ -15,6 +15,20 @@ export const getMypantry = () =>
 export const getMyRecipes = () =>
   instance.get("recipes/").then((response) => response.data.results);
 
+export const putMe = ({ avatar, nickname, email, address }) =>
+  instance
+    .put(
+      "users/me",
+      { avatar, nickname, email, address },
+      {
+        headers: {
+          "X-CSRFToken": Cookie.get("csrftoken") || "",
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    )
+    .then((response) => response.data);
+
 export const postLogin = ({ username, password }) =>
   instance
     .post(
