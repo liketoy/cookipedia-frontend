@@ -63,6 +63,7 @@ export default function Layout({ title, canGoBack, hasTabBar, children }) {
           borderColor={"#ACACAC"}
           position="fixed"
           bottom={0}
+          bg="white"
           px={10}
           pb={5}
           pt={3}

@@ -285,8 +285,6 @@ export default function SignUp() {
             }}
           />
 
-
-
           <FormControl>
             <FormLabel>ADDRESS</FormLabel>
             {popUp ? <div><AddressPopUp setValue={setValue} /></div> : ''}
@@ -296,9 +294,6 @@ export default function SignUp() {
             </Box>
             <Input type="text" id="addDetail" placeholder="상세주소" marginTop="1rem" focusBorderColor="none" onChange={(e) => setValue("addressDetail", e.target.value)} />
           </FormControl>
-
-
-
 
           <Button
             type="submit"
