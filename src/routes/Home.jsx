@@ -1,3 +1,5 @@
+import { Icon, Stack } from "@chakra-ui/react";
+import FloatingButton from "../components/FloatingButton";
 import Layout from "../components/Layout";
 import useUser from "../lib/useUser";
 import ProtectedPage from "../components/ProtectedPage";
