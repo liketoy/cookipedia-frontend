@@ -20,3 +20,13 @@ export const postLogin = ({ username, password }) =>
       }
     )
     .then((reponse) => reponse.data);
+
+export const postQuill = (data) =>
+  instance
+    .post("quill/upload/", data, {
+      headers: {
+        "X-CSRFToken": Cookie.get("csrftoken") || "",
+        "Content-Type": "multipart/form-data",
+      },
+    })
+    .then((reponse) => reponse.data);
