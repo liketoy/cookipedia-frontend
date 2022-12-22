@@ -46,12 +46,12 @@ export default function Home() {
             <Input type="text" placeholder="Search" paddingLeft="3.5rem" borderRadius="3rem" />
           </InputGroup>
           {console.log(data?.ingredients?.results)}
-          {data? categories.map(category => {
+          {data ? categories.map(category => {
             return (
               <>
                 <Box w="100%">
-                  {data?.ingredients?.results.filter(info => info.ingredient.category === category ).map((info, idx) => {
-                    if (idx === 0 ){
+                  {data?.ingredients?.results.filter(info => info.ingredient.category === category).map((info, idx) => {
+                    if (idx === 0) {
                       return (
                         <>
                           <Box fontWeight="bold">{info.ingredient.category}</Box>
@@ -59,7 +59,7 @@ export default function Home() {
                           <Box display="flex" mt="1rem" justifyContent="space-between">
                             <Text>{info.ingredient.name}</Text>
                             <Box display="flex">
-                              <Text>{info?.date_bought? '' : ''}</Text>
+                              <Text>{info?.date_bought ? '' : ''}</Text>
                             </Box>
                           </Box>
                         </>
@@ -80,7 +80,7 @@ export default function Home() {
                 </Box>
               </>
             )
-          }): ''}
+          }) : ''}
 
           {/* {data? categories.map(category => {
             return(
